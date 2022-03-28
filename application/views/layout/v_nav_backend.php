@@ -31,15 +31,19 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?= base_url('kategori')?>" class="nav-link <?php if ($this->uri->segment(1)=='kategori') {
+              echo "active";
+            }?>">
               <i class="nav-icon fas fa-list"></i>
               <p> Kategori </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?= base_url('produk') ?>" class="nav-link <?php if ($this->uri->segment(1)=='produk') {
+              echo "active";
+            }?>">
               <i class="nav-icon fas fa-box"></i>
-              <p> Barang </p>
+              <p> Produk </p>
             </a>
           </li>
           <li class="nav-item has-treeview">

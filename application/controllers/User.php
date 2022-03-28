@@ -50,7 +50,7 @@ class User extends CI_Controller {
             'level_user' => $this->input->post('level_user'),
          );
          $this->m_user->edit($data);
-         $this->session->set_flashdata('pesan', 'Data Berhasil Diedit');
+         $this->session->set_flashdata('pesan', 'Data Berhasil Diupdate');
          redirect('user');
     }
 
