@@ -4,7 +4,7 @@
                 <h3 class="card-title">Data Kategori</h3>
 
                 <div class="card-tools">
-                  <button data-toggle="modal" data-target="#add" type="button" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i>Add</button>
+                  <button data-toggle="modal" data-target="#add" type="button" class="btn btn-success btn-sm"><i class="fas fa-plus fa-sm"></i> Tambah Kategori</button>
                 </div>
                 <!-- /.card-tools -->
               </div>
@@ -20,12 +20,12 @@
                   echo '</h5></div>';
                 }
                 ?>
-                <table class="table table-bordered" id="example1">
+                <table class="table table-striped" id="example1">
                   <thead class="text-center">
                     <tr>
-                      <th>No</th>
-                      <th>Nama Kategori</th>
-                      <th>Action</th>
+                      <th>NO</th>
+                      <th>NAMA KATEGORI</th>
+                      <th>AKSI</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -35,8 +35,8 @@
                       <td><?= $no++; ?></td>
                       <td><?= $value->nama_kategori ?></td>
                       <td>
-                        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit<?= $value->id_kategori ?>"><i class="fa fa-edit"></i></button>
-                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete<?= $value->id_kategori ?>"><i class="fa fa-trash"></i></button>
+                        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit<?= $value->id_kategori ?>"><i class="fa fa-pen"></i> Edit</button>
+                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete<?= $value->id_kategori ?>"><i class="fa fa-trash"></i> Delete</button>
                       </td>
                     </tr>
                    <?php } ?>
@@ -53,7 +53,7 @@
         <div class="modal-dialog modal-sm">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Add Kategori</h4>
+              <h4 class="modal-title">Tambah Kategori</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -65,7 +65,7 @@
             ?>
 
               <div class="form-group">
-                <label>Nama Kategori</label>
+                <label>Masukkan Kategori</label>
                 <input type="text" name="nama_kategori" class="form-control" placeholder="Nama Kategori" required>
               </div>
             </div>

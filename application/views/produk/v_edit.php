@@ -2,7 +2,7 @@
     <!-- general form elements disabled -->
     <div class="card card-primary">
         <div class="card-header">
-            <h3 class="card-title">Form Tambah Produk</h3>
+            <h3 class="card-title">Form Edit Produk</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -19,17 +19,17 @@
                 <h5><i class="icon fas fa-info"></i>'.$error_upload.'</h5> </div>';
             }
 
-            echo form_open_multipart('produk/add') ?>
+            echo form_open_multipart('produk/edit/'.$produk->id_produk) ?>
             <div class="form-group">
                 <label>Nama Produk</label>
-                <input name="nama_produk" class="form-control" placeholder="Nama Produk" value="<?= set_value('nama_produk') ?>">
+                <input name="nama_produk" class="form-control" placeholder="Nama Produk" value="<?= $produk->nama_produk ?>">
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label>Kategori</label>
                         <select name="id_kategori" class="form-control">
-                            <option value="">Pilih Kategori</option>
+                            <option value="<?= $produk->id_kategori ?>"><?= $produk->nama_kategori ?></option>
                             <?php foreach ($kategori as $key => $value) { ?>
                                 <option value="<?= $value->id_kategori ?>"><?= $value->nama_kategori ?></option>
                             <?php  } ?>
@@ -39,25 +39,25 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label>Harga</label>
-                        <input name="harga" class="form-control" placeholder="Harga Produk" value="<?= set_value('harga') ?>">
+                        <input name="harga" class="form-control" placeholder="Harga Produk" value="<?= $produk->harga ?>">
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label>Deskripsi</label>
-                <textarea name="deskripsi" class="form-control" placeholder="Deskripsi Produk" rows="5"><?= set_value('deskripsi') ?></textarea>
+                <textarea name="deskripsi" class="form-control" placeholder="Deskripsi Produk" rows="5"><?= $produk->deskripsi?></textarea>
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label>Gambar</label>
-                        <input type="file" name="gambar" class="form-control" id="preview_gambar" required>
+                        <input type="file" name="gambar" class="form-control" id="preview_gambar">
                     </div>
                 </div>
 
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <img src="<?= base_url('assets/gambar/nophoto.jpg')?>"id="gambar_load" width="300px">
+                        <img src="<?= base_url('assets/gambar/'.$produk->gambar)?>"id="gambar_load" width="300px">
                     </div>
                 </div>
             </div>

@@ -20,15 +20,15 @@
                   echo '</h5></div>';
                 }
                 ?>
-                <table class="table table-bordered" id="example1">
+                <table class="table table-striped" id="example1">
                   <thead class="text-center">
                     <tr>
-                      <th>No</th>
-                      <th>Nama User</th>
-                      <th>Username</th>
-                      <th>Password</th>
-                      <th>Level</th>
-                      <th>Action</th>
+                      <th>NO</th>
+                      <th>NAMA USER</th>
+                      <th>USERNAME</th>
+                      <th>PASSWORD</th>
+                      <th>LEVEL</th>
+                      <th>ACTION</th>
                     </tr>
                   </thead>
                   <tbody>
