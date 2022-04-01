@@ -29,10 +29,7 @@
                 <h5><i class="icon fas fa-info"></i>' . $error_upload . '</h5> </div>';
             }
 
-            echo form_open_multipart('') ?>
-
-
-
+            echo form_open_multipart('gambarproduk/add/' . $produk->id_produk) ?>
 
             <div class="row">
                 <div class="col-sm-4">
@@ -63,17 +60,19 @@
             <?php echo form_close() ?>
 
             <hr>
-            <div class="row">
+            <div class="row text-center">
                 <?php foreach ($gambar as $key => $value) { ?>
-                    <div class="col-sm-3">
-                    <div class="form-group">
-                        <img src="<?= base_url('assets/gambarproduk/'.$value->gambar) ?>" id="gambar_load" class="img-fluid">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <img src="<?= base_url('assets/gambarproduk/' . $value->gambar) ?>" id="gambar_load" height="200px">
+                        </div>
+                        <b>
+                            <p class="text-center" for="">Ket :
+                        </b><?= $value->ket ?></p>
+                        <button data-toggle="modal" data-target="#delete<?= $value->id_gambar ?>" class="btn btn-danger btn-block btn-xs"><i class="fas fa-trash"></i> Delete</button> <br>
                     </div>
-                   <b><p class="text-center" for="">Ket : </b><?= $value->ket ?></p>
-                    <a href="#" class="btn btn-danger btn-block btn-xs"><i class="fas fa-trash"></i>  Delete</a> <br>
-                </div>
-               <?php }?>
-                
+                <?php } ?>
+
             </div>
 
         </div>
@@ -81,6 +80,34 @@
     </div>
     <!-- /.card -->
 </div>
+
+<!--modal delete -->
+<?php foreach ($gambar as $key => $value) { ?>
+    <div class="modal fade" id="delete<?= $value->id_gambar ?>">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete <?= $value->ket ?></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="form-group">
+                        <img src="<?= base_url('assets/gambarproduk/' . $value->gambar) ?>" id="gambar_load" height="200px">
+                    </div>
+                    <h5>Ingin hapus gambar ini?</h5>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <a href="<?= base_url('gambarproduk/delete/'.$value->id_produk.'/'. $value->id_gambar) ?>" class="btn btn-primary">Delete</a>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+<?php } ?>
 
 <script>
     function bacaGambar(input) {
