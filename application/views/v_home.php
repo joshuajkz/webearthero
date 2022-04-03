@@ -32,11 +32,19 @@
 
 <div class="card card-solid">
   <div class="card-body pb-0">
-    <div class="row d-flex align-items-stretch">
+    <div class="row">
 
       <?php foreach ($produk as $key => $value) { ?>
-
         <div class="col-sm-4">
+          <?php
+          echo form_open('belanja/add');
+          echo form_hidden('id', $value->id_produk);
+          echo form_hidden('qty', 1);
+          echo form_hidden('price', $value->harga);
+          echo form_hidden('name', $value->nama_produk);
+          echo form_hidden('redirect_page',str_replace('index.php/','',current_url()));
+          ?>
+
           <div class="card">
             <div class="card-header text-center">
               <h2 class="lead"><b><?= $value->nama_produk ?></b></h2>
@@ -62,18 +70,40 @@
                 </div>
                 <div class="col-sm-6">
                   <div class="text-right">
-                    <a href="<?=base_url('home/detail_produk/'.$value->id_produk)?>" class="btn btn-sm btn-dark ">
+                    <a href="<?= base_url('home/detail_produk/' . $value->id_produk) ?>" class="btn btn-sm btn-dark ">
                       <i class="fas fa-eye"></i>
                     </a>
-                    <a href="#" class="btn btn-sm btn-info ">
-                      <i class="fas fa-cart-plus"></i> Add</a>
+                    <button type="submit" class="btn btn-sm btn-info swalDefaultSuccess">
+                      <i class="fas fa-cart-plus"></i> Add</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <?php echo form_close();
+          ?>
         </div>
       <?php } ?>
     </div>
   </div>
 </div>
+
+<!-- SweetAlert2 -->
+<script src="<?= base_url() ?>template/plugins/sweetalert2/sweetalert2.min.js"></script>
+<script type="text/javascript">
+  $(function() {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+
+    $('.swalDefaultSuccess').click(function() {
+      Toast.fire({
+        icon: 'success',
+        title: 'Produk berhasil ditambahkan ke Keranjang'
+      })
+    });
+  });
+</script>

@@ -88,18 +88,28 @@
                     </h2>
                 </div>
                 <hr>
-                <div class="mt-4">
-                    <div class="btn btn-primary btn-lg btn-flat">
-                        <i class="fas fa-cart-plus fa-lg mr-2"></i>
-                        Add to Cart
+                <?php
+                echo form_open()
+                ?>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <input type="number" class="form-control text-center" value="1" min="1">
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-success btn-flat swalDefaultSuccess">
+                            <i class="fas fa-cart-plus fa-lg mr-2"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                    <div class="col-sm-5">
+                        <button class="btn btn-warning btn-flat">
+                            <i class="fas fa-heart fa-lg mr-2"></i>
+                            Add to Wishlist
+                        </button>
                     </div>
 
-                    <div class="btn btn-default btn-lg btn-flat">
-                        <i class="fas fa-heart fa-lg mr-2"></i>
-                        Add to Wishlist
-                    </div>
                 </div>
-
+                <?php echo form_close() ?>
                 <div class="mt-4 product-share">
                     <a href="#" class="text-gray">
                         <i class="fab fa-facebook-square fa-2x"></i>
@@ -136,4 +146,22 @@
 </div>
 <!-- /.card -->
 
-<script src="<?= base_url()?>template/dist/js/demo.js"></script>
+<script src="<?= base_url() ?>template/plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="<?= base_url() ?>template/dist/js/demo.js"></script>
+<script type="text/javascript">
+    $(function() {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+
+        $('.swalDefaultSuccess').click(function() {
+            Toast.fire({
+                icon: 'success',
+                title: 'Produk berhasil ditambahkan ke Keranjang'
+            })
+        });
+    });
+</script>
