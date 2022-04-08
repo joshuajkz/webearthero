@@ -89,27 +89,29 @@
                 </div>
                 <hr>
                 <?php
-                echo form_open()
+                echo form_open('belanja/add');
+                echo form_hidden('id', $produk->id_produk);
+                echo form_hidden('price', $produk->harga);
+                echo form_hidden('name', $produk->nama_produk);
+                echo form_hidden('redirect_page',str_replace('index.php/','',current_url()));
                 ?>
                 <div class="row">
                     <div class="col-sm-2">
-                        <input type="number" class="form-control text-center" value="1" min="1">
+                        <input type="number" name="qty" class="form-control text-center" value="1" min="1">
                     </div>
-                    <div class="col-sm-4">
+                    <div class="pe-2">
                         <button type="submit" class="btn btn-success btn-flat swalDefaultSuccess">
-                            <i class="fas fa-cart-plus fa-lg mr-2"></i>
+                            <i class="fas fa-cart-plus fa-lg"></i>
                             Add to Cart
                         </button>
                     </div>
                     <div class="col-sm-5">
-                        <button class="btn btn-warning btn-flat">
-                            <i class="fas fa-heart fa-lg mr-2"></i>
-                            Add to Wishlist
+                        <button type="submit" class="btn btn-light btn-flat">
+                            <i class="fas fa-heart text-danger"></i>
                         </button>
                     </div>
-
                 </div>
-                <?php echo form_close() ?>
+                <?php echo form_close(); ?>
                 <div class="mt-4 product-share">
                     <a href="#" class="text-gray">
                         <i class="fab fa-facebook-square fa-2x"></i>

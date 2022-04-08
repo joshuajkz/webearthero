@@ -81,36 +81,46 @@
           <span class="badge badge-danger navbar-badge"><?= $jml_item ?></span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <!-- Keranjang -->
-          <?php foreach ($keranjang as $key => $value) { ?>
+          <?php
+          if (empty($keranjang)) { ?>
+            <a href="#" class="dropdown-item">
+              <p>Keranjang Belanja Kosong</p>
+            </a>
+            <?php } else {
+
+            foreach ($keranjang as $key => $value) {
+              $produk = $this->m_home->detail_produk($value['id']);
+            ?>
+              <a href="#" class="dropdown-item">
+                <div class="media">
+                  <img src="<?= base_url('assets/gambar/' . $produk->gambar) ?>" class="img-size-50 mr-3" alt="Product Image">
+                  <div class="media-body">
+                    <h3 class="dropdown-item-title">
+                      <b><?= $value['name'] ?></b>
+                    </h3>
+                    <p class="text-sm"><?= $value['qty'] ?> x Rp<?= number_format($value['price'], 0) ?></p>
+                    <p class="text-sm text-muted"><i class="fa fa-money-bill-wave mr-1"></i>Rp<?= $this->cart->format_number($value['subtotal']); ?></p>
+                  </div>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+            <?php } ?>
             <a href="#" class="dropdown-item">
               <div class="media">
-                <img src="<?= base_url() ?>template/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                 <div class="media-body">
-                  <h3 class="dropdown-item-title">
-                    <b><?= $value['name'] ?></b>
-                  </h3>
-                  <p class="text-sm"><?= $value['qty'] ?> x Rp<?= number_format($value['price'], 0) ?></p>
-                  <p class="text-sm text-muted"><i class="fa fa-money-bill-wave mr-1"></i>Rp<?= $this->cart->format_number($value['subtotal']); ?></p>
+                  <tr>
+                    <td colspan="2"> </td>
+                    <td class="right"><strong>TOTAL : </strong></td>
+                    <td class="right">Rp<?= $this->cart->format_number($this->cart->total()); ?></td>
+                  </tr>
                 </div>
               </div>
             </a>
             <div class="dropdown-divider"></div>
-          <?php } ?>
-          <a href="#" class="dropdown-item">
-            <div class="media">
-              <div class="media-body">
-                <tr>
-                  <td colspan="2"> </td>
-                  <td class="right"><strong>TOTAL : </strong></td>
-                  <td class="right">Rp<?= $this->cart->format_number($this->cart->total()); ?></td>
-                </tr>
-              </div>
-            </div>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">Lihat Keranjang</a>
-          <a href="#" class="dropdown-item dropdown-footer">Checkout</a>
+            <a href="<?= base_url('belanja')?>" class="dropdown-item dropdown-footer">Lihat Keranjang</a>
+            <a href="#" class="dropdown-item dropdown-footer">Checkout</a>
+          <?php  } ?>
+
           <!-- Keranjang -->
         </div>
       </li>
