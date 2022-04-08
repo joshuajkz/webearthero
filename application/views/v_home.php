@@ -63,7 +63,7 @@
                   <div class="text-left">
                     <h4>
                       <span class="badge bg-success">
-                        Rp<?= number_format($value->harga, 0) ?>
+                        Rp<?= number_format($value->harga, 0,",",".") ?>
                       </span>
                     </h4>
                   </div>

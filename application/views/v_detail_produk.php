@@ -82,9 +82,9 @@
                     </label>
                 </div>
                 <hr>
-                <div class="bg-gray py-2 px-3 mt-4">
+                <div class="bg-info py-2 px-3 mt-4">
                     <h2 class="mb-0">
-                        Rp<?= number_format($produk->harga, 0) ?>
+                        Rp<?= number_format($produk->harga, 0,",",".") ?>
                     </h2>
                 </div>
                 <hr>

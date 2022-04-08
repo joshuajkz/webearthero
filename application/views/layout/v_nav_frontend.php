@@ -91,6 +91,7 @@
             foreach ($keranjang as $key => $value) {
               $produk = $this->m_home->detail_produk($value['id']);
             ?>
+              <!-- Keranjang -->
               <a href="#" class="dropdown-item">
                 <div class="media">
                   <img src="<?= base_url('assets/gambar/' . $produk->gambar) ?>" class="img-size-50 mr-3" alt="Product Image">
@@ -98,8 +99,8 @@
                     <h3 class="dropdown-item-title">
                       <b><?= $value['name'] ?></b>
                     </h3>
-                    <p class="text-sm"><?= $value['qty'] ?> x Rp<?= number_format($value['price'], 0) ?></p>
-                    <p class="text-sm text-muted"><i class="fa fa-money-bill-wave mr-1"></i>Rp<?= $this->cart->format_number($value['subtotal']); ?></p>
+                    <p class="text-sm"><?= $value['qty'] ?> x Rp<?= number_format($value['price'], 0,",",".") ?></p>
+                    <p class="text-sm text-muted"><i class="fa fa-money-bill-wave mr-1"></i>Rp<?= number_format($value['subtotal'], 0,",","."); ?></p>
                   </div>
                 </div>
               </a>
@@ -111,13 +112,13 @@
                   <tr>
                     <td colspan="2"> </td>
                     <td class="right"><strong>TOTAL : </strong></td>
-                    <td class="right">Rp<?= $this->cart->format_number($this->cart->total()); ?></td>
+                    <td class="right">Rp<?= number_format($this->cart->total(), 0,",","."); ?></td>
                   </tr>
                 </div>
               </div>
             </a>
             <div class="dropdown-divider"></div>
-            <a href="<?= base_url('belanja')?>" class="dropdown-item dropdown-footer">Lihat Keranjang</a>
+            <a href="<?= base_url('belanja') ?>" class="dropdown-item dropdown-footer">Lihat Keranjang</a>
             <a href="#" class="dropdown-item dropdown-footer">Checkout</a>
           <?php  } ?>
 
