@@ -45,6 +45,12 @@ class Produk extends CI_Controller
             array('required' => '%s Harus Diisi !')
         );
         $this->form_validation->set_rules(
+            'berat',
+            'Berat',
+            'required',
+            array('required' => '%s Harus Diisi !')
+        );
+        $this->form_validation->set_rules(
             'deskripsi',
             'Deskripsi',
             'required',
@@ -75,6 +81,7 @@ class Produk extends CI_Controller
                     'nama_produk' => $this->input->post('nama_produk'),
                     'id_kategori' => $this->input->post('id_kategori'),
                     'harga' => $this->input->post('harga'),
+                    'berat' => $this->input->post('berat'),
                     'deskripsi' => $this->input->post('deskripsi'),
                     'gambar' => $upload_data['uploads']['file_name'],
                 );
@@ -111,6 +118,12 @@ class Produk extends CI_Controller
         $this->form_validation->set_rules(
             'harga',
             'Harga',
+            'required',
+            array('required' => '%s Harus Diisi !')
+        );
+        $this->form_validation->set_rules(
+            'berat',
+            'Berat',
             'required',
             array('required' => '%s Harus Diisi !')
         );
@@ -155,6 +168,7 @@ class Produk extends CI_Controller
                     'nama_produk' => $this->input->post('nama_produk'),
                     'id_kategori' => $this->input->post('id_kategori'),
                     'harga' => $this->input->post('harga'),
+                    'berat' => $this->input->post('berat'),
                     'deskripsi' => $this->input->post('deskripsi'),
                     'gambar' => $upload_data['uploads']['file_name'],
                 );
@@ -168,6 +182,7 @@ class Produk extends CI_Controller
                 'nama_produk' => $this->input->post('nama_produk'),
                 'id_kategori' => $this->input->post('id_kategori'),
                 'harga' => $this->input->post('harga'),
+                'berat' => $this->input->post('berat'),
                 'deskripsi' => $this->input->post('deskripsi'),
             );
             $this->m_produk->edit($data);

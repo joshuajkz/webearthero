@@ -36,7 +36,10 @@
           foreach ($produk as $key => $value) { ?>
             <tr class="text-center">
               <td><?= $no++; ?></td>
-              <td><?= $value->nama_produk ?></td>
+              <td>
+                <?= $value->nama_produk ?> <br>
+                Berat : <?= $value->berat ?> g
+              </td>
               <td><?= $value->nama_kategori ?></td>
               <td>Rp<?= number_format($value->harga, 0) ?></td>
               <td><img src="<?= base_url('assets/gambar/' . $value->gambar) ?>" width="150px"></td>

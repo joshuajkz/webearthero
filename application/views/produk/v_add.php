@@ -25,7 +25,7 @@
                 <input name="nama_produk" class="form-control" placeholder="Nama Produk" value="<?= set_value('nama_produk') ?>">
             </div>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="form-group">
                         <label>Kategori</label>
                         <select name="id_kategori" class="form-control">
@@ -36,10 +36,16 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="form-group">
-                        <label>Harga</label>
+                        <label>Harga (Rp)</label>
                         <input name="harga" class="form-control" placeholder="Harga Produk" value="<?= set_value('harga') ?>">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Berat (g)</label>
+                        <input type="number" min="0" name="berat" class="form-control" placeholder="Berat Produk" value="<?= set_value('berat') ?>">
                     </div>
                 </div>
             </div>
