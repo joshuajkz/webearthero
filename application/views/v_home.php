@@ -107,3 +107,7 @@
     });
   });
 </script>
+
+<div class="float-right">
+  <p>Favourite</p>
+</div>
