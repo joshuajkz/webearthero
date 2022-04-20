@@ -38,7 +38,7 @@ class Pelanggan extends CI_Controller
             'ulangi_password',
             'Ulangi Password',
             'required|matches[password]',
-            array('required' => '%s Harus Diisi !','matches' => '%s! Password Tidak Sama.')
+            array('required' => '%s Harus Diisi !', 'matches' => '%s! Password Tidak Sama.')
         );
 
         if ($this->form_validation->run() == FALSE) {
@@ -57,5 +57,14 @@ class Pelanggan extends CI_Controller
             $this->session->set_flashdata('pesan', 'Register Akun Berhasil. Silakan login kembali.');
             redirect('pelanggan/register');
         }
+    }
+
+    public function login()
+    {
+        $data = array(
+            'title' => 'Login Pelanggan',
+            'isi' => 'v_login_pelanggan',
+        );
+        $this->load->view('layout/v_wrapper_frontend', $data, FALSE);
     }
 }
