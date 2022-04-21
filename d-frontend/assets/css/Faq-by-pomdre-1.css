@@ -29,7 +29,7 @@
 
 .panel {
   padding: 0 18px;
-  background-color: C2FFD9;
+  background-color: #c2ffd9;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
