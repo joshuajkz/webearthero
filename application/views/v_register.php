@@ -1,7 +1,7 @@
-<div class="center mx-auto" style="width: 50%;">
+<div class="center mx-auto" style="width: 40%;">
     <div class="card">
         <div class="card-body register-card-body">
-            <p class="login-box-msg">Register Pelanggan Baru</p>
+            <h4 class="login-box-msg">Register Pelanggan Baru</h4>
 
             <?php
             echo validation_errors('<div class="alert alert-warning alert-dismissible">
@@ -49,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <a href="login.html" class="text-center">Sudah Punya Akun</a>
+            <a href="<?=base_url('pelanggan/login')?>" class="text-center">Sudah Punya Akun</a>
             <div class="float-right">
                 <button type="submit" class="btn btn-primary float-right">Register</button>
             </div>
