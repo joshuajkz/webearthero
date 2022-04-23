@@ -16,10 +16,7 @@
                         <th>AKSI</th>
                     </tr>
 
-                    <?php $i = 1; ?>
-
-                    <?php
-                    
+                    <?php $i = 1;   
                     $total_berat = 0;
                     foreach ($this->cart->contents() as $items) {
                         $produk = $this->m_home->detail_produk($items['id']);

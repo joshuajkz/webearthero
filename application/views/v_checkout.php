@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-12">
             <h4>
-                <i class="fas fa-globe"></i> AdminLTE, Inc.
+                <i class="fas fa-map-marker"></i> Alamat Pengiriman
                 <small class="float-right">Date: 2/10/2014</small>
             </h4>
         </div>
@@ -13,7 +13,6 @@
     <!-- info row -->
     <div class="row invoice-info">
         <div class="col-sm-4 invoice-col">
-            From
             <address>
                 <strong>Admin, Inc.</strong><br>
                 795 Folsom Ave, Suite 600<br>
@@ -24,14 +23,6 @@
         </div>
         <!-- /.col -->
         <div class="col-sm-4 invoice-col">
-            To
-            <address>
-                <strong>John Doe</strong><br>
-                795 Folsom Ave, Suite 600<br>
-                San Francisco, CA 94107<br>
-                Phone: (555) 539-1037<br>
-                Email: john.doe@example.com
-            </address>
         </div>
         <!-- /.col -->
         <div class="col-sm-4 invoice-col">
@@ -51,42 +42,36 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Qty</th>
-                        <th>Product</th>
-                        <th>Serial #</th>
-                        <th>Description</th>
-                        <th>Subtotal</th>
+                        <th>NAMA PRODUK</th>
+                        <th>BERAT</th>
+                        <th>HARGA</th>
+                        <th class="col-sm-1">JUMLAH</th>
+                        <th>SUB-TOTAL</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Call of Duty</td>
-                        <td>455-981-221</td>
-                        <td>El snort testosterone trophy driving gloves handsome</td>
-                        <td>$64.50</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Need for Speed IV</td>
-                        <td>247-925-726</td>
-                        <td>Wes Anderson umami biodiesel</td>
-                        <td>$50.00</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Monsters DVD</td>
-                        <td>735-845-642</td>
-                        <td>Terry Richardson helvetica tousled street art master</td>
-                        <td>$10.70</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Grown Ups Blue Ray</td>
-                        <td>422-568-642</td>
-                        <td>Tousled lomo letterpress</td>
-                        <td>$25.99</td>
-                    </tr>
+                    <?php $i = 1; ?>
+                    <?php
+                    $total_berat = 0;
+                    foreach ($this->cart->contents() as $items) {
+                        $produk = $this->m_home->detail_produk($items['id']);
+                        $berat = $items['qty'] * $produk->berat;
+                        $total_berat += $total_berat + $berat;
+                    ?>
+                        <tr>
+                            <td><?php echo $items['name']; ?></td>
+                            <td><?= $berat ?> g</td>
+                            <td>Rp<?php echo number_format($items['price'], 0, ",", "."); ?></td>
+                            <td>
+                                <?php echo form_input(array(
+                                    'name' => $i . '[qty]',
+                                    'value' => $items['qty']
+                                ));
+                                ?>
+                            </td>
+                            <td>Rp<?php echo number_format($items['subtotal'], 0, ",", "."); ?></td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
@@ -96,58 +81,93 @@
 
     <div class="row">
         <!-- accepted payments column -->
-        <div class="col-6">
-            <p class="lead">Payment Methods:</p>
-            <img src="../../dist/img/credit/visa.png" alt="Visa">
-            <img src="../../dist/img/credit/mastercard.png" alt="Mastercard">
-            <img src="../../dist/img/credit/american-express.png" alt="American Express">
-            <img src="../../dist/img/credit/paypal2.png" alt="Paypal">
+        <div class="col-7">
+            Tujuan
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Provinsi</label>
+                        <select name="provinsi" class="form-control"></select>
+                    </div>
+                </div>
 
-            <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-                Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem
-                plugg
-                dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
-            </p>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Kota/Kabupaten</label>
+                        <select name="kota" class="form-control"></select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Ekspedisi</label>
+                        <select name="ekspedisi" class="form-control"></select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Paket</label>
+                        <select name="paket" class="form-control"></select>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- /.col -->
-        <div class="col-6">
-            <p class="lead">Amount Due 2/22/2014</p>
-
+        <div class="col-5">
             <div class="table-responsive">
                 <table class="table">
-                    <tr>
-                        <th style="width:50%">Subtotal:</th>
-                        <td>$250.30</td>
-                    </tr>
-                    <tr>
-                        <th>Tax (9.3%)</th>
-                        <td>$10.34</td>
-                    </tr>
-                    <tr>
-                        <th>Shipping:</th>
-                        <td>$5.80</td>
-                    </tr>
-                    <tr>
-                        <th>Total:</th>
-                        <td>$265.24</td>
-                    </tr>
+                    <tr">
+                        <th style="width:50%">AKUMULASI HARGA</th>
+                        <td>Rp<?php echo number_format($this->cart->total(), 0, ",", "."); ?></td>
+                        </tr>
+                        <tr>
+                            <th>TOTAL BERAT</th>
+                            <td><?= $total_berat ?> g</td>
+                        </tr>
+                        <tr>
+                            <th>ONGKOS KIRIM</th>
+                            <td><label>0</label></td>
+                        </tr>
+                        <tr class="bg-success">
+                            <th>TOTAL PEMBAYARAN</th>
+                            <td><label>0</label></td>
+                        </tr>
                 </table>
             </div>
         </div>
         <!-- /.col -->
     </div>
     <!-- /.row -->
-
-    <!-- this row will not appear when printing -->
     <div class="row no-print">
         <div class="col-12">
-            <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-            <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
-                Payment
-            </button>
-            <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-                <i class="fas fa-download"></i> Generate PDF
+            <a href="invoice-print.html" target="_blank" class="btn btn-default"></i> Kembali</a>
+            <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Proses Checkout
             </button>
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        //masukkan data ke select provinsi
+        $.ajax({
+            type: "POST",
+            url: "<?= base_url('rajaongkir/provinsi') ?>",
+            success: function(hasil_provinsi) {
+                //console.log(hasil_provinsi);
+                $("select[name=provinsi]").html(hasil_provinsi);
+            }
+        });
+        //masukkan data ke select kota
+        $("select[name=provinsi]").on("change", function() {
+            var id_provinsi_terpilih = $("option:selected", this).attr("id_provinsi");
+            $.ajax({
+                type: "POST",
+                url: "<?= base_url('rajaongkir/kota') ?>",
+                data: 'id_provinsi=' + id_provinsi_terpilih,
+                success: function(hasil_kota) {
+                    $("select[name=kota]").html(hasil_kota);
+                }
+            });
+        });
+    });
+</script>
