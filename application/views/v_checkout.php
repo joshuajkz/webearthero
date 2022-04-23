@@ -3,13 +3,13 @@
     <!-- title row -->
     <div class="row">
         <div class="col-12">
-            <h4>
-                <i class="fas fa-map-marker"></i> Alamat Pengiriman
-                <small class="float-right">Date: 2/10/2014</small>
+            <h4>INVOICE <b>#</b>
+                <small class="float-right">Tanggal: 01/02/03</small>
             </h4>
         </div>
         <!-- /.col -->
     </div>
+    <br>
     <!-- info row -->
     <div class="row invoice-info">
         <div class="col-sm-4 invoice-col">
@@ -26,26 +26,37 @@
         </div>
         <!-- /.col -->
         <div class="col-sm-4 invoice-col">
-            <b>Invoice #007612</b><br>
-            <br>
-            <b>Order ID:</b> 4F3S8J<br>
-            <b>Payment Due:</b> 2/22/2014<br>
-            <b>Account:</b> 968-34567
+            <div class="table-responsive">
+                <table class="table table-responsive table-borderless">
+                    <tr>
+                        <th>Order ID</th>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <th>Payment Due</th>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <th>Account</th>
+                        <td>3</td>
+                    </tr>
+                </table>
+            </div>
         </div>
         <!-- /.col -->
     </div>
     <!-- /.row -->
-
+    <br>
     <!-- Table row -->
     <div class="row">
         <div class="col-12 table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped text-center">
                 <thead>
-                    <tr>
+                    <tr class="">
                         <th>NAMA PRODUK</th>
                         <th>BERAT</th>
                         <th>HARGA</th>
-                        <th class="col-sm-1">JUMLAH</th>
+                        <th>JUMLAH</th>
                         <th>SUB-TOTAL</th>
                     </tr>
                 </thead>
@@ -62,13 +73,7 @@
                             <td><?php echo $items['name']; ?></td>
                             <td><?= $berat ?> g</td>
                             <td>Rp<?php echo number_format($items['price'], 0, ",", "."); ?></td>
-                            <td>
-                                <?php echo form_input(array(
-                                    'name' => $i . '[qty]',
-                                    'value' => $items['qty']
-                                ));
-                                ?>
-                            </td>
+                            <td><?php echo $items['qty']; ?></td>
                             <td>Rp<?php echo number_format($items['subtotal'], 0, ",", "."); ?></td>
                         </tr>
                     <?php } ?>
@@ -78,32 +83,35 @@
         <!-- /.col -->
     </div>
     <!-- /.row -->
-
+    <hr>
+    <br>
     <div class="row">
         <!-- accepted payments column -->
         <div class="col-7">
-            Tujuan
+            <b>TUJUAN PENGIRIMAN</b>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-5">
+                    <br>
                     <div class="form-group">
                         <label>Provinsi</label>
                         <select name="provinsi" class="form-control"></select>
                     </div>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-5">
+                    <br>
                     <div class="form-group">
                         <label>Kota/Kabupaten</label>
                         <select name="kota" class="form-control"></select>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                     <div class="form-group">
                         <label>Ekspedisi</label>
                         <select name="ekspedisi" class="form-control"></select>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                     <div class="form-group">
                         <label>Paket</label>
                         <select name="paket" class="form-control"></select>
@@ -115,28 +123,29 @@
         <div class="col-5">
             <div class="table-responsive">
                 <table class="table">
-                    <tr">
+                    <tr>
                         <th style="width:50%">AKUMULASI HARGA</th>
                         <td>Rp<?php echo number_format($this->cart->total(), 0, ",", "."); ?></td>
-                        </tr>
-                        <tr>
-                            <th>TOTAL BERAT</th>
-                            <td><?= $total_berat ?> g</td>
-                        </tr>
-                        <tr>
-                            <th>ONGKOS KIRIM</th>
-                            <td><label>0</label></td>
-                        </tr>
-                        <tr class="bg-success">
-                            <th>TOTAL PEMBAYARAN</th>
-                            <td><label>0</label></td>
-                        </tr>
+                    </tr>
+                    <tr>
+                        <th>TOTAL BERAT</th>
+                        <td><?= $total_berat ?> g</td>
+                    </tr>
+                    <tr>
+                        <th>ONGKOS KIRIM</th>
+                        <td><label>0</label></td>
+                    </tr>
+                    <tr class="bg-success">
+                        <th>TOTAL PEMBAYARAN</th>
+                        <td><label>0</label></td>
+                    </tr>
                 </table>
             </div>
         </div>
         <!-- /.col -->
     </div>
     <!-- /.row -->
+    <br>
     <div class="row no-print">
         <div class="col-12">
             <a href="invoice-print.html" target="_blank" class="btn btn-default"></i> Kembali</a>
