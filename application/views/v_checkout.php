@@ -148,7 +148,7 @@
     <br>
     <div class="row no-print">
         <div class="col-12">
-            <a href="invoice-print.html" target="_blank" class="btn btn-default"></i> Kembali</a>
+            <a href="<?= base_url('belanja') ?>" class="btn btn-default"></i> Kembali</a>
             <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Proses Checkout
             </button>
         </div>
@@ -175,6 +175,26 @@
                 data: 'id_provinsi=' + id_provinsi_terpilih,
                 success: function(hasil_kota) {
                     $("select[name=kota]").html(hasil_kota);
+                }
+            });
+        });
+
+        $("select[name=kota]").on("change", function() {
+            $.ajax({
+                type: "POST",
+                url: "<?= base_url('rajaongkir/ekspedisi') ?>",
+                success: function(hasil_ekspedisi) {
+                    $("select[name=ekspedisi]").html(hasil_ekspedisi);
+                }
+            });
+        });
+
+        $("select[name=ekspedisi]").on("change", function() {
+            $.ajax({
+                type: "POST",
+                url: "<?= base_url('rajaongkir/paket') ?>",
+                success: function(hasil_paket) {
+                    $("select[name=paket]").html(hasil_paket);
                 }
             });
         });
