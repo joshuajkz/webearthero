@@ -43,29 +43,28 @@
     <!-- Right navbar links -->
     <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
       <!-- Messages Dropdown Menu -->
-      <li class="nav-item">
+      <li class="nav-item-dropdown">
         <?php
         if ($this->session->userdata('email') == "") { ?>
-          <a class="nav-link"   href="<?=base_url('pelanggan/login')?>">
+          <a class="nav-link" href="<?= base_url('pelanggan/login') ?>">
             <span class="brand-text font-weight-light">Login/Register</span>
             <i class="fas fa-sign-in-alt"></i>
           </a>
         <?php } else { ?>
           <a class="nav-link" data-toggle="dropdown" href="#">
-            <span class="brand-text font-weight-light">Hi, <?=$this->session->userdata('nama_pelanggan')?>!</span> 
+            <span class="brand-text font-weight-light">Hi, <?= $this->session->userdata('nama_pelanggan') ?>!</span>
             <i class="fas fa-user"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <div class="dropdown-divider"></div>
-            <a href="<?=base_url('pelanggan/akun')?>" class="dropdown-item">
+            <a href="<?= base_url('pelanggan/akun') ?>" class="dropdown-item">
               <i class="fas fa-user mr-2"></i> Akun Saya
             </a>
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">
-            <i class="fas fa-receipt mr-2"></i></i> Pesanan Saya
+              <i class="fas fa-receipt mr-2"></i></i> Pesanan Saya
             </a>
             <div class="dropdown-divider"></div>
-            <a href="<?=base_url('pelanggan/logout')?>" class="dropdown-item dropdown-footer">Log Out</a>
+            <a href="<?= base_url('pelanggan/logout') ?>" class="dropdown-item dropdown-footer">Log Out</a>
           </div>
         <?php } ?>
       </li>
@@ -122,7 +121,6 @@
             <a href="<?= base_url('belanja') ?>" class="dropdown-item dropdown-footer">Lihat Keranjang</a>
             <a href="#" class="dropdown-item dropdown-footer">Checkout</a>
           <?php  } ?>
-
           <!-- Keranjang -->
         </div>
       </li>

@@ -70,7 +70,7 @@
                     <a href="<?= base_url('belanja/clear') ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Bersihkan Keranjang</a>
                     <div class="float-right">
                         <button type="submit" class="btn btn-info float-center"><i class="fas fa-spinner"></i> Update Keranjang</button>
-                        <a href="" class="btn btn-success">Check Out</a>
+                        <a href="<?=base_url('belanja/checkout')?>" class="btn btn-success">Check Out</a>
                     </div>
                 </div>
                 <?php echo form_close(); ?>
