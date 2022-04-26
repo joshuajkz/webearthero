@@ -67,7 +67,7 @@
                     foreach ($this->cart->contents() as $items) {
                         $produk = $this->m_home->detail_produk($items['id']);
                         $berat = $items['qty'] * $produk->berat;
-                        $total_berat += $total_berat + $berat;
+                        $total_berat += $berat;
                     ?>
                         <tr>
                             <td><?php echo $items['name']; ?></td>
@@ -117,6 +117,12 @@
                         <select name="paket" class="form-control"></select>
                     </div>
                 </div>
+                <div class="col-sm-10">
+                    <div class="form-group">
+                        <label>Alamat</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
             </div>
         </div>
         <!-- /.col -->
@@ -125,19 +131,19 @@
                 <table class="table">
                     <tr>
                         <th style="width:50%">AKUMULASI HARGA</th>
-                        <td>Rp<?php echo number_format($this->cart->total(), 0, ",", "."); ?></td>
+                        <td><label>Rp<?php echo number_format($this->cart->total(), 0, ",", "."); ?></label></td>
                     </tr>
                     <tr>
                         <th>TOTAL BERAT</th>
-                        <td><?= $total_berat ?> g</td>
+                        <td><label><?= $total_berat ?> g</label></td>
                     </tr>
                     <tr>
                         <th>ONGKOS KIRIM</th>
-                        <td><label>0</label></td>
+                        <td><label id="ongkir"></label></td>
                     </tr>
                     <tr class="bg-success">
                         <th>TOTAL PEMBAYARAN</th>
-                        <td><label>0</label></td>
+                        <td><label id="total_bayar"></label></td>
                     </tr>
                 </table>
             </div>
@@ -189,14 +195,33 @@
             });
         });
 
+        //mendapatkan data paket
         $("select[name=ekspedisi]").on("change", function() {
+            //mendapatkan ekspedisi terpilih
+            var ekspedisi_terpilih = $("select[name=ekspedisi]").val();
+            //mendapatkan id kota tujuan terpilih
+            var id_kota_tujuan_terpilih = $("option:selected", "select[name=kota]").attr('id_kota');
+            //mengambil data ongkos kirim
+            var total_berat = <?= $total_berat ?>;
+
             $.ajax({
                 type: "POST",
                 url: "<?= base_url('rajaongkir/paket') ?>",
+                data: 'ekspedisi=' + ekspedisi_terpilih + '&id_kota=' + id_kota_tujuan_terpilih + '&berat=' + total_berat,
                 success: function(hasil_paket) {
                     $("select[name=paket]").html(hasil_paket);
                 }
             });
+        });
+
+        //
+        $("select[name=paket]").on("change", function() {
+            //menampilkan ongkir
+            var dataongkir = $("option:selected", this).attr('ongkir');
+            $("#ongkir").html("Rp"+dataongkir);
+            //menghitung total pembayaran
+            var data_total_bayar = parseInt(dataongkir)+parseInt(<?= $this->cart->total()?>);
+            $("#total_bayar").html("Rp"+data_total_bayar);
         });
     });
 </script>

@@ -21,7 +21,7 @@
                     foreach ($this->cart->contents() as $items) {
                         $produk = $this->m_home->detail_produk($items['id']);
                         $berat = $items['qty'] * $produk->berat;
-                        $total_berat += $total_berat + $berat;
+                        $total_berat += $berat;
                     ?>
                         <tr>
                             <td><?php echo $items['name']; ?></td>
