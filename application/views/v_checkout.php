@@ -1,51 +1,17 @@
 <!-- Main content -->
 <div class="invoice p-3 mb-3">
+    <?php
+    $no_order = date('ymd') . strtoupper(random_string('alnum', 8));
+    ?>
     <!-- title row -->
     <div class="row">
         <div class="col-12">
-            <h4>INVOICE <b>#</b>
-                <small class="float-right">Tanggal: 01/02/03</small>
+            <h4>NO. ORDER <b>#<?= $no_order ?></b>
+                <small class="float-right">Tanggal: <?= date('d-m-Y') ?></small>
             </h4>
         </div>
         <!-- /.col -->
     </div>
-    <br>
-    <!-- info row -->
-    <div class="row invoice-info">
-        <div class="col-sm-4 invoice-col">
-            <address>
-                <strong>Admin, Inc.</strong><br>
-                795 Folsom Ave, Suite 600<br>
-                San Francisco, CA 94107<br>
-                Phone: (804) 123-5432<br>
-                Email: info@almasaeedstudio.com
-            </address>
-        </div>
-        <!-- /.col -->
-        <div class="col-sm-4 invoice-col">
-        </div>
-        <!-- /.col -->
-        <div class="col-sm-4 invoice-col">
-            <div class="table-responsive">
-                <table class="table table-responsive table-borderless">
-                    <tr>
-                        <th>Order ID</th>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <th>Payment Due</th>
-                        <td>2</td>
-                    </tr>
-                    <tr>
-                        <th>Account</th>
-                        <td>3</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <!-- /.col -->
-    </div>
-    <!-- /.row -->
     <br>
     <!-- Table row -->
     <div class="row">
@@ -85,6 +51,14 @@
     <!-- /.row -->
     <hr>
     <br>
+    <?php
+    echo form_open('belanja/checkout');
+    ?>
+    <?php
+    echo validation_errors('<div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        ', ' </div>');
+    ?>
     <div class="row">
         <!-- accepted payments column -->
         <div class="col-7">
@@ -117,10 +91,28 @@
                         <select name="paket" class="form-control"></select>
                     </div>
                 </div>
-                <div class="col-sm-10">
+                <div class="col-sm-7">
+                    <div class="form-group">
+                        <label>Nama Penerima</label>
+                        <input name="nama_penerima" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>No. HP Penerima</label>
+                        <input name="hp_penerima" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-sm-8">
                     <div class="form-group">
                         <label>Alamat</label>
-                        <input type="text" class="form-control">
+                        <input name="alamat" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Kode Pos</label>
+                        <input name="kode_pos" class="form-control" required>
                     </div>
                 </div>
             </div>
@@ -152,13 +144,34 @@
     </div>
     <!-- /.row -->
     <br>
+    <!-- Simpan Transaksi -->
+    <input name="no_order" value="<?= $no_order ?>" hidden>
+    <input name="estimasi" hidden>
+    <input name="ongkir" hidden>
+    <input name="berat" value="<?= $total_berat ?>" hidden>
+    <input name="akumulasi_harga" value="<?= $this->cart->total() ?>" hidden>
+    <input name="total_bayar" hidden>
+    <!-- End Simpan Transaksi -->
+
+    <!-- Simpan Rincian Transaksi -->
+    <?php
+    $i = 1;
+    foreach ($this->cart->contents() as $items) {
+        echo form_hidden('qty' . $i++, $items['qty']);
+    }
+    ?>
+    <!-- Simpan Rincian Transaksi -->
+
     <div class="row no-print">
         <div class="col-12">
             <a href="<?= base_url('belanja') ?>" class="btn btn-default"></i> Kembali</a>
-            <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Proses Checkout
+            <button type="submit" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Proses Checkout
             </button>
         </div>
     </div>
+    <?php
+    echo form_close()
+    ?>
 </div>
 
 <script>
@@ -214,14 +227,19 @@
             });
         });
 
-        //
+
         $("select[name=paket]").on("change", function() {
             //menampilkan ongkir
             var dataongkir = $("option:selected", this).attr('ongkir');
-            $("#ongkir").html("Rp"+dataongkir);
+            $("#ongkir").html("Rp" + dataongkir);
             //menghitung total pembayaran
-            var data_total_bayar = parseInt(dataongkir)+parseInt(<?= $this->cart->total()?>);
-            $("#total_bayar").html("Rp"+data_total_bayar);
+            var data_total_bayar = parseInt(dataongkir) + parseInt(<?= $this->cart->total() ?>);
+            $("#total_bayar").html("Rp" + data_total_bayar);
+            // estimasi dan ongkir
+            var estimasi = $("option:selected", this).attr('estimasi');
+            $("input[name=estimasi]").val(estimasi);
+            $("input[name=ongkir]").val(dataongkir);
+            $("input[name=total_bayar]").val(data_total_bayar);
         });
     });
 </script>

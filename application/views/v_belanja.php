@@ -1,5 +1,15 @@
 <div class="card card-solid">
     <div class="card-body pb-0">
+        <?php
+
+        if ($this->session->flashdata('pesan')) {
+            echo '<div class="alert alert-success alert-dismissible">
+<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+<h5><i class="icon fas fa-check"></i>';
+            echo $this->session->flashdata('pesan');
+            echo '</h5></div>';
+        }
+        ?>
         <div class="row">
             <div class="col-sm-12">
 
@@ -16,7 +26,7 @@
                         <th>AKSI</th>
                     </tr>
 
-                    <?php $i = 1;   
+                    <?php $i = 1;
                     $total_berat = 0;
                     foreach ($this->cart->contents() as $items) {
                         $produk = $this->m_home->detail_produk($items['id']);
@@ -67,7 +77,7 @@
                     <a href="<?= base_url('belanja/clear') ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Bersihkan Keranjang</a>
                     <div class="float-right">
                         <button type="submit" class="btn btn-info float-center"><i class="fas fa-spinner"></i> Update Keranjang</button>
-                        <a href="<?=base_url('belanja/checkout')?>" class="btn btn-success">Check Out</a>
+                        <a href="<?= base_url('belanja/checkout') ?>" class="btn btn-success">Check Out</a>
                     </div>
                 </div>
                 <?php echo form_close(); ?>
