@@ -16,10 +16,12 @@ class Pelanggan_login
     {
         $cek = $this->ci->m_auth->login_pelanggan($email, $password);
         if ($cek) {
+            $id_pelanggan = $cek->id_pelanggan;
             $nama_pelanggan = $cek->nama_pelanggan;
             $email = $cek->email;
             $level_user = $cek->level_user;
             //session
+            $this->ci->session->set_userdata('id_pelanggan', $id_pelanggan);
             $this->ci->session->set_userdata('nama_pelanggan', $nama_pelanggan);
             $this->ci->session->set_userdata('email', $email);
             redirect('home');
@@ -40,6 +42,7 @@ class Pelanggan_login
     }
 
     public function logout(){
+        $this->ci->session->set_userdata('id_pelanggan');
         $this->ci->session->set_userdata('nama_pelanggan');
         $this->ci->session->set_userdata('email');
         $this->ci->session->set_flashdata('pesan', 'Anda Berhasil Logout');
