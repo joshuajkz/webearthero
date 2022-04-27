@@ -67,7 +67,30 @@
           </table>
         </div>
         <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
-          Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus ut ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas sollicitudin, nisi a luctus interdum, nisl ligula placerat mi, quis posuere purus ligula eu lectus. Donec nunc tellus, elementum sit amet ultricies at, posuere nec nunc. Nunc euismod pellentesque diam.
+        <table class="table">
+            <tr>
+              <th>No. Order</th>
+              <th>Tanggal</th>
+              <th>Ekspedisi</th>
+              <th>Total Bayar</th>
+            </tr>
+            <?php foreach ($diproses as $key => $value) { ?>
+              <tr>
+                <td><?= $value->no_order ?></td>
+                <td><?= $value->tgl_order ?></td>
+                <td>
+                  <?= $value->ekspedisi ?> | <?= $value->paket ?> <br>
+                  Ongkir: <?= $value->ongkir ?>
+                </td>
+                <td>
+                  <b>Rp<?= number_format($value->total_bayar, 0, ",", ".") ?></b> <br>
+                    <span class="badge badge-success">Pembayaran Terverifikasi</span>
+                    <span class="badge badge-secondary">Sedang Dikemas</span>
+                </td>
+              </tr>
+            <?php } ?>
+
+          </table>
         </div>
         <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel" aria-labelledby="custom-tabs-four-messages-tab">
           Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus volutpat augue id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce nec hendrerit sem, ac tristique nulla. Integer vestibulum orci odio. Cras nec augue ipsum. Suspendisse ut velit condimentum, mattis urna a, malesuada nunc. Curabitur eleifend facilisis velit finibus tristique. Nam vulputate, eros non luctus efficitur, ipsum odio volutpat massa, sit amet sollicitudin est libero sed ipsum. Nulla lacinia, ex vitae gravida fermentum, lectus ipsum gravida arcu, id fermentum metus arcu vel metus. Curabitur eget sem eu risus tincidunt eleifend ac ornare magna.

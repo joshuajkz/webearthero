@@ -1,0 +1,4 @@
+0 = Pesanan
+1 = Diproses
+2 = Dikirim
+3 = Selesai

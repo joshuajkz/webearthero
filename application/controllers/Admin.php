@@ -1,29 +1,29 @@
 <?php
 
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
+class Admin extends CI_Controller
+{
 
-    
+
     public function __construct()
     {
         parent::__construct();
         $this->load->model('m_admin');
-        
+        $this->load->model('m_pesanan_masuk');
     }
-    
+
 
     public function index()
     {
         $data = array(
             'title' => 'Dashboard',
-            'total_produk'=> $this->m_admin->total_produk(),
-            'total_kategori'=> $this->m_admin->total_kategori(),
+            'total_produk' => $this->m_admin->total_produk(),
+            'total_kategori' => $this->m_admin->total_kategori(),
             'isi' => 'v_admin',
         );
         $this->load->view('layout/v_wrapper_backend', $data, FALSE);
-        
     }
     public function setting()
     {
@@ -66,14 +66,34 @@ class Admin extends CI_Controller {
                 'nama_toko' => $this->input->post('nama_toko'),
                 'alamat_toko' => $this->input->post('alamat_toko'),
                 'no_telepon' => $this->input->post('no_telepon'),
-             );
-             $this->m_admin->edit($data);
-             $this->session->set_flashdata('pesan', 'Setting Berhasil Diupdate');
-             redirect('admin/setting');
+            );
+            $this->m_admin->edit($data);
+            $this->session->set_flashdata('pesan', 'Setting Berhasil Diupdate');
+            redirect('admin/setting');
         }
-
     }
 
+    public function pesanan_masuk()
+    {
+        $data = array(
+            'title' => 'Pesanan Masuk',
+            'pesanan' => $this->m_pesanan_masuk->pesanan(),
+            'pesanan_diproses' => $this->m_pesanan_masuk->pesanan_diproses(),
+            'isi' => 'v_pesanan_masuk',
+        );
+        $this->load->view('layout/v_wrapper_backend', $data, FALSE);
+    }
+    public function proses($id_transaksi)
+    {
+        $data = array(
+            'id_transaksi' => $id_transaksi,
+            'status_order' => '1'
+        );
+        $this->m_pesanan_masuk->update_order($data);
+        $this->session->set_flashdata('pesan', 'Pesanan Siap Diproses !');
+        redirect('admin/pesanan_masuk');
+        
+    }
 }
 
 /* End of file Admin.php */
