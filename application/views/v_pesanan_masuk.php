@@ -155,7 +155,6 @@
         <!-- /.card -->
     </div>
 </div>
-</div>
 
 <!-- modal bukti pembayaran -->
 <?php foreach ($pesanan as $key => $value) { ?>

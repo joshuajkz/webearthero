@@ -1,5 +1,5 @@
 <!-- Main content -->
-<div class="invoice p-3 mb-3">
+<div class="container invoice p-3 mb-3">
     <?php
     $no_order = date('ymd') . strtoupper(random_string('alnum', 8));
     ?>

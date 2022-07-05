@@ -1,4 +1,4 @@
-<div class="card card-solid">
+<div class="container card card-solid">
     <div class="card-body pb-0">
         <?php
 

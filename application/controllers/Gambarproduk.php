@@ -36,7 +36,7 @@ class Gambarproduk extends CI_Controller
         if ($this->form_validation->run() == TRUE) {
             $config['upload_path'] = './assets/gambarproduk/';
             $config['allowed_types'] = 'gif|jpg|png|jpeg|ico';
-            $config['max_size']     = '2000';
+            $config['max_size']     = '8000';
             //$this->load->library('upload', $config);
             $this->upload->initialize($config);
             $field_name = "gambar";

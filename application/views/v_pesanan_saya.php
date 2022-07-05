@@ -9,11 +9,11 @@
     echo '</h5></div>';
   }
   ?>
-  <div class="card card-primary card-outline card-outline-tabs">
+  <div class=" container card card-primary card-outline card-outline-tabs">
     <div class="card-header p-0 border-bottom-0">
       <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Semua Pesanan</a>
+          <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Belum Bayar</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">Sedang Diproses</a>
@@ -35,7 +35,7 @@
               <th>Tanggal</th>
               <th>Ekspedisi</th>
               <th>Total Bayar</th>
-              <th>Action</th>
+              <th>  </th>
             </tr>
             <?php foreach ($belum_bayar as $key => $value) { ?>
               <tr>
@@ -51,14 +51,13 @@
                     <span class="badge badge-warning">Belum Bayar</span>
                   <?php } else { ?>
                     <span class="badge badge-success">Sudah Bayar</span> <br>
-                    <span class="badge badge-secondary">Menunggu Verifikasi</span>
                   <?php } ?>
                 </td>
                 <td>
                   <?php if ($value->status_bayar == 0) { ?>
                     <a href="<?= base_url('pesanan_saya/bayar/' . $value->id_transaksi) ?>" class="btn btn-sm btn-warning">Bayar</a>
                   <?php } else { ?>
-                    <a href="<?= base_url('pesanan_saya/bayar/' . $value->id_transaksi) ?>" class="btn btn-sm btn-info">Lacak Pesanan</a>
+                    <span class="badge badge-secondary">Menunggu Verifikasi</span>
                   <?php } ?>
                 </td>
               </tr>
@@ -116,6 +115,7 @@
                   <h5>
                     <?= $value->no_resi ?> <br>
                     <button data-toggle="modal" data-target="#diterima<?= $value->id_transaksi ?>" class="btn btn-primary btn-sm">Pesanan Diterima</button>
+                    <a href="https://cekresi.com/"><button data-toggle="modal" class="btn btn-info btn-sm">Lacak Pesanan</button></a>
                   </h5>
                 </td>
               </tr>
@@ -157,13 +157,13 @@
     <!-- /.card -->
   </div>
 </div>
-</div>
+<br>
 
 <?php foreach ($dikirim as $key => $value) { ?>
   <!-- modal selesai -->
   <div class="modal fade" id="diterima<?= $value->id_transaksi ?>">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="container modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Pesanan Diterima</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">

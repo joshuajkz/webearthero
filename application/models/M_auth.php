@@ -9,6 +9,7 @@ class M_auth extends CI_Model {
         $this->db->select('*');
         $this->db->from('tbl_user');
         $this->db->where(array(
+            'level_user' => '1',
             'username' => $username,
             'password' => $password
         ));

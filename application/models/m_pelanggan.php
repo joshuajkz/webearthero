@@ -9,7 +9,6 @@ class M_Pelanggan extends CI_Model {
         $this->db->insert('tbl_pelanggan', $data);
         
     }
-
 }
 
 /* End of file M_Pelanggan.php */

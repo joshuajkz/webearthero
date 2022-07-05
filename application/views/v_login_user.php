@@ -23,12 +23,12 @@
 <bo dy class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
-      <a href="<?= base_url() ?>">EART<b>HERO</b></a>
+      <a href="<?= base_url() ?>"><img src="/webearthero/assets/gambar/logoeh2.png" alt="" style="width: 200px;"></a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
       <div class="card-body login-card-body">
-        <p class="login-box-msg">LOGIN</p>
+        <p class="login-box-msg">ADMIN LOGIN</p>
 
         <?php
         echo validation_errors('<div class="alert alert-warning alert-dismissible">
